@@ -52,7 +52,11 @@ Encrypted WireGuard Tunnel
 Ubuntu VPN Server
     ↓
 Internet
-Experimental Validation Flow
+```
+
+## Experimental Validation Flow
+
+```text
 Client Device
     ↓
 Custom Validation Script
@@ -62,18 +66,30 @@ Validation API Server
 Machine-ID Verification
     ↓
 VPN Allowed / Blocked
-Technologies Used
-WireGuard
-WGDashboard
-Python
-Flask
-Gunicorn
-systemd
-Ubuntu Linux
-Bash Scripting
-iptables
-Linux Networking
-Project Structure
+```
+
+---
+
+# Technologies Used
+
+| Technology | Purpose |
+|---|---|
+| WireGuard | Core VPN protocol used to create secure encrypted tunnels between client devices and the VPN server |
+| WGDashboard | Web-based management panel used for creating, managing, and monitoring WireGuard peers |
+| Python | Used to build the experimental device validation logic and backend services |
+| Flask | Lightweight Python web framework used to create the machine validation API |
+| Gunicorn | Production-grade WSGI server used to run the Flask API reliably in the background |
+| systemd | Linux service manager used to automatically start and manage VPN-related services |
+| Ubuntu Linux | Operating system used to host the WireGuard server and backend services |
+| Bash Scripting | Used for VPN automation, validation workflows, and custom connection scripts |
+| iptables | Linux firewall and NAT tool used for packet forwarding and internet routing |
+| Linux Networking | Used for routing, tunneling, IP forwarding, firewalling, and VPN traffic management |
+
+---
+
+# Project Structure
+
+```text
 .
 ├── README.md
 ├── company-vpn-connect.sh
@@ -82,62 +98,110 @@ Project Structure
 ├── example-client.conf
 ├── example-wg0.conf
 └── docs/
-Installation
-1. Install WireGuard
+```
+
+---
+
+# Installation
+
+## 1. Install WireGuard
+
+```bash
 sudo apt update
 sudo apt install wireguard -y
-2. Configure VPN Server
+```
+
+---
+
+## 2. Configure VPN Server
 
 Create:
 
+```text
 /etc/wireguard/wg0.conf
+```
 
 Enable IP forwarding and NAT.
 
 Start WireGuard:
 
+```bash
 sudo systemctl enable wg-quick@wg0
 sudo systemctl start wg-quick@wg0
-3. Install WGDashboard
+```
+
+---
+
+## 3. Install WGDashboard
 
 Official project:
 
+```text
 https://github.com/donaldzou/WGDashboard
+```
 
 Install and configure WGDashboard for peer management.
 
-Experimental Device Validation Setup
-Validation API
+---
+
+# Experimental Device Validation Setup
+
+## Validation API
 
 The validation API stores and verifies machine IDs.
 
 Run with Gunicorn:
 
+```bash
 gunicorn -w 2 -b 0.0.0.0:5005 server:app
-systemd Service
+```
+
+---
+
+## systemd Service
+
+```bash
 sudo systemctl enable company-vpn
 sudo systemctl start company-vpn
-Client Validation Script
+```
+
+---
+
+## Client Validation Script
 
 Start VPN using:
 
+```bash
 ~/company-vpn-connect.sh test4_wg0
+```
 
 Instead of directly using:
 
+```bash
 wg-quick up test4_wg0
-Testing
-VPN Testing
-Mobile VPN connection
-Ubuntu laptop connection
-Public IP verification
-Internet routing through VPN server
-Validation Testing
-First-device registration
-Machine-ID matching
-Device mismatch blocking
-Registry updates
-Important Limitation
+```
+
+---
+
+# Testing
+
+## VPN Testing
+
+- Mobile VPN connection
+- Ubuntu laptop connection
+- Public IP verification
+- Internet routing through VPN server
+
+## Validation Testing
+
+- First-device registration
+- Machine-ID matching
+- Device mismatch blocking
+- Registry updates
+
+---
+
+# Important Limitation
 
 The experimental machine-binding system works only through the custom validation launcher script.
 
@@ -145,45 +209,56 @@ Direct imports into standard WireGuard clients/apps can bypass the validation la
 
 This project was primarily built as a proof-of-concept and learning experiment around VPN access control and device validation concepts.
 
-Future Improvements
-Headscale + Tailscale integration
-Device approval workflow
-Zero Trust architecture
-TPM-backed device identity
-SSO/MFA integration
-Centralized device management
-Server-side enforcement
-Demo Video
+---
+
+# Future Improvements
+
+- Headscale + Tailscale integration
+- Device approval workflow
+- Zero Trust architecture
+- TPM-backed device identity
+- SSO/MFA integration
+- Centralized device management
+- Server-side enforcement
+
+---
+
+# Demo Video
 
 The demo video covers:
 
-WireGuard server setup
-WGDashboard overview
-Mobile and laptop VPN connections
-Public IP routing through VPN server
-Experimental device validation workflow
-Machine mismatch blocking
-Architecture explanation
-Security Note
+- WireGuard server setup
+- WGDashboard overview
+- Mobile and laptop VPN connections
+- Public IP routing through VPN server
+- Experimental device validation workflow
+- Machine mismatch blocking
+- Architecture explanation
 
-Do NOT upload:
+---
 
-Real private keys
-Real VPN configs
-Production IPs/domains
-Sensitive credentials
+# Security Note
+
+**Do NOT upload:**
+
+- Real private keys
+- Real VPN configs
+- Production IPs/domains
+- Sensitive credentials
 
 Use only sanitized example configurations in public repositories.
 
-Learning Objectives
+---
+
+# Learning Objectives
 
 This project helped explore:
 
-VPN architecture
-Linux networking
-WireGuard
-Secure tunneling
-Device validation concepts
-Production deployment practices
-Zero Trust access ideas
-Experimental access-control workflows
+- VPN architecture
+- Linux networking
+- WireGuard
+- Secure tunneling
+- Device validation concepts
+- Production deployment practices
+- Zero Trust access ideas
+- Experimental access-control workflows
