@@ -225,28 +225,16 @@ This project was primarily built as a proof-of-concept and learning experiment a
 
 # Demo Video
 
-The demo video covers:
+## :movie_camera: Project Demo
 
-- WireGuard server setup
-- WGDashboard overview
-- Mobile and laptop VPN connections
-- Public IP routing through VPN server
-- Experimental device validation workflow
-- Machine mismatch blocking
-- Architecture explanation
+This video demonstrates:
+- How WireGuard Conf script connects
+- VPN got connected
+- WGDashboard with Peers
+- IP address Before and After
 
----
+:point_right: Watch Demo: https://drive.google.com/file/d/173ZM_Vx_rZ8LK6kF4SktsdZ0nM5h72wJ/view?usp=sharing
 
-# Security Note
-
-**Do NOT upload:**
-
-- Real private keys
-- Real VPN configs
-- Production IPs/domains
-- Sensitive credentials
-
-Use only sanitized example configurations in public repositories.
 
 ---
 
